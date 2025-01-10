@@ -30,23 +30,41 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-lg text-black text-sm cursor-pointer transition-all duration-300 flex items-center justify-center gap-1.5 
+      className={`
+        rounded-lg 
+        text-white 
+        text-sm 
+        cursor-pointer 
+        transition-all 
+        duration-300 
+        flex 
+        items-center 
+        justify-center 
+        gap-2
+        max-w-20
+        whitespace-nowrap
         ${flex ? 'flex-1' : ''} 
-        ${small ? 'py-2 px-7' : 'py-4 px-6'} 
+        ${small ? 'py-2 px-8' : 'py-4 px-8'} 
         ${full ? 'w-full' : ''} 
         ${isDisabled || isLoading ? 'opacity-80 cursor-not-allowed' : ''} 
-        ${outlined ? 'bg-transparent text-primary shadow-none' : type === 'secondary' ? 'bg-secondary border border-secondary' : 'bg-primary border border-primary shadow-lg shadow-primary/40'}
+        ${
+          outlined
+            ? 'bg-transparent text-primary shadow-none'
+            : type === 'secondary'
+              ? 'bg-secondary border border-secondary'
+              : 'bg-primary border border-primary shadow-lg shadow-primary/40'
+        }
       `}
       onClick={() => !isDisabled && !isLoading && onClick?.()}
     >
       {isLoading && (
         <CircularProgress
-          style={{ width: '18px', height: '18px', color: 'inherit' }}
+          style={{ width: '16px', height: '16px', color: 'inherit' }}
         />
       )}
       {leftIcon}
-      {text}
-      {isLoading && <> . . .</>}
+      <span className="px-1">{text}</span>
+      {isLoading && <span className="tracking-wider">...</span>}
       {rightIcon}
     </div>
   );
